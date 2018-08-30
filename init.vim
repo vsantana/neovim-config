@@ -19,7 +19,7 @@ set background=dark
 set expandtab
 set autoindent
 set softtabstop=4
-set shiftwidth=2
+set shiftwidth=4
 set tabstop=4
 
 set history=1000
@@ -34,7 +34,7 @@ vnoremap . :normal .<CR>
 
 colorscheme solarized
 
-autocmd BufEnter * lcd %:p:h
+" autocmd BufEnter * lcd %:p:h
 
 filetype plugin indent on
 
@@ -53,7 +53,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'groenewege/vim-less'
 Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/nginx.vim'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-syntastic/syntastic'
 Plug 'Shougo/neocomplcache.vim'
@@ -70,13 +70,30 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim'
 
+Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+Plug 'Yggdroot/indentLine'
+Plug 'lifepillar/vim-mucomplete'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Colors
+Plug 'mattn/emmet-vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
+Plug 'romainl/Apprentice'
+
 call plug#end()
 
-let g:javascript_plugin_jsdoc           = 1
-let g:javascript_conceal_function       = "ƒ"
-let g:javascript_conceal_null           = "ø"
-let g:javascript_conceal_arrow_function = "⇒"
-let g:javascript_conceal_return         = "⇚"
+let g:user_emmet_leader_key             =','
+" let g:javascript_plugin_jsdoc           = 1
+" let g:javascript_conceal_function       = "ƒ"
+" let g:javascript_conceal_null           = "ø"
+" let g:javascript_conceal_arrow_function = "⇒"
+" let g:javascript_conceal_return         = "⇚"
 
 let g:jsx_ext_required = 0
 
@@ -99,3 +116,55 @@ au BufRead,BufNewFile nginx.conf set ft=nginx
 
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
+
+" vsantana
+"
+set cul
+
+set list lcs=tab:\|\ "Exibir indentação com tabs
+set spelllang=pt
+
+"" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+nnoremap <Leader>; :Files<cr>
+nnoremap <S-F3> :Ag <c-r><c-w>
+nnoremap <F3> :NERDTreeToggle<cr>
+au BufRead,BufNewFile *.xml vnoremap <Leader>c <esc>a --><esc>'<i<!-- <esc>'>$
+au BufRead,BufNewFile *.js vnoremap <Leader>c <esc>a */}<esc>'<i{/* <esc>'>$
+
+
+"" JavaScript
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab foldmethod=syntax
+
+"" vim-airline
+let g:airline_theme = 'bubblegum'
+" let g:airline_theme = 'light'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+if !exists('g:airline_powerline_fonts')
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+else
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif
