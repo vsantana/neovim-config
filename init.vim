@@ -120,9 +120,11 @@ set mousehide               " Hide the mouse cursor while typing
 " vsantana
 "
 set cul
-
+set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
 set spelllang=pt
+
+let mapleader="\<space>"
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
