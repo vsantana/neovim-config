@@ -126,7 +126,8 @@ set list lcs=tab:\|\ "Exibir indentação com tabs
 set spelllang=pt
 
 let mapleader="\<space>"
-let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#completion_delay = 5
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
