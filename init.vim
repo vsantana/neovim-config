@@ -34,8 +34,6 @@ vnoremap . :normal .<CR>
 
 colorscheme solarized
 
-" autocmd BufEnter * lcd %:p:h
-
 filetype plugin indent on
 
 set undodir=~/.config/nvim/undodir
@@ -79,16 +77,18 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mattn/emmet-vim'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
 
 " Colors
-Plug 'mattn/emmet-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'romainl/Apprentice'
 
 call plug#end()
 
-let g:user_emmet_leader_key             =','
+let g:user_emmet_leader_key               ="<c-y>"
 " let g:javascript_plugin_jsdoc           = 1
 " let g:javascript_conceal_function       = "ƒ"
 " let g:javascript_conceal_null           = "ø"
@@ -99,7 +99,7 @@ let g:jsx_ext_required = 0
 
 let g:syntastic_check_on_open=1
 
-map <C-E> :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeToggle<cr>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$']
@@ -123,22 +123,22 @@ set cul
 
 set list lcs=tab:\|\ "Exibir indentação com tabs
 set spelllang=pt
+let mapleader=" "
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
+augroup ENDlet mapleader = ","
 
 nnoremap <Leader>; :Files<cr>
 nnoremap <S-F3> :Ag <c-r><c-w>
-nnoremap <F3> :NERDTreeToggle<cr>
 au BufRead,BufNewFile *.xml vnoremap <Leader>c <esc>a --><esc>'<i<!-- <esc>'>$
 au BufRead,BufNewFile *.js vnoremap <Leader>c <esc>a */}<esc>'<i{/* <esc>'>$
 
 
 "" JavaScript
-autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab foldmethod=syntax
+au BufRead,BufNewFile *.js setlocal ts=4 sts=4 sw=4 noexpandtab foldmethod=syntax
 
 "" vim-airline
 let g:airline_theme = 'bubblegum'
