@@ -80,6 +80,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mattn/emmet-vim'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
+Plug 'sheerun/vim-polyglot'
 
 " Colors
 Plug 'NLKNguyen/papercolor-theme'
@@ -120,10 +121,14 @@ set mousehide               " Hide the mouse cursor while typing
 " vsantana
 "
 set cul
-
+set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
 set spelllang=pt
 let mapleader=" "
+
+let mapleader="\<space>"
+" let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#completion_delay = 5
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
