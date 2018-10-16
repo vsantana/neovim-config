@@ -83,6 +83,7 @@ Plug 'inkarkat/vim-mark'
 Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mrtazz/simplenote.vim'
+Plug 'qpkorr/vim-bufkill'
 
 " Colors
 Plug 'NLKNguyen/papercolor-theme'
