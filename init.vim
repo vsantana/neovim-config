@@ -80,6 +80,7 @@ Plug 'tpope/vim-commentary'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
+Plug 'https://github.com/Alok/notational-fzf-vim'
 
 " Colors
 Plug 'mattn/emmet-vim'
@@ -89,6 +90,8 @@ Plug 'romainl/Apprentice'
 
 call plug#end()
 
+" Notational
+let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
 let g:user_emmet_leader_key             =','
 " let g:javascript_plugin_jsdoc           = 1
 " let g:javascript_conceal_function       = "ƒ"
