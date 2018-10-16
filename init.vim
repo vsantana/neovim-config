@@ -81,6 +81,7 @@ Plug 'mattn/emmet-vim'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 Plug 'sheerun/vim-polyglot'
+Plug 'mrtazz/simplenote.vim'
 
 " Colors
 Plug 'NLKNguyen/papercolor-theme'
@@ -89,7 +90,7 @@ Plug 'romainl/Apprentice'
 
 call plug#end()
 
-let g:user_emmet_leader_key               ="<c-y>"
+let g:user_emmet_leader_key               =","
 " let g:javascript_plugin_jsdoc           = 1
 " let g:javascript_conceal_function       = "ƒ"
 " let g:javascript_conceal_null           = "ø"
@@ -99,6 +100,10 @@ let g:user_emmet_leader_key               ="<c-y>"
 let g:jsx_ext_required = 0
 
 let g:syntastic_check_on_open=1
+
+ "For mucomplete
+set completeopt+=menuone
+
 
 nnoremap <F3> :NERDTreeToggle<cr>
 let NERDTreeQuitOnOpen=1
@@ -138,8 +143,9 @@ augroup ENDlet mapleader = ","
 
 nnoremap <Leader>; :Files<cr>
 nnoremap <S-F3> :Ag <c-r><c-w>
-au BufRead,BufNewFile *.xml vnoremap <Leader>c <esc>a --><esc>'<i<!-- <esc>'>$
-au BufRead,BufNewFile *.js vnoremap <Leader>c <esc>a */}<esc>'<i{/* <esc>'>$
+
+let g:SimplenoteUsername = $SIMPLENOTE_USER
+let g:SimplenotePassword = $SIMPLENOTE_PWD
 
 
 "" JavaScript
