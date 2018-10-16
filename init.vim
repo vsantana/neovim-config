@@ -34,8 +34,6 @@ vnoremap . :normal .<CR>
 
 colorscheme solarized
 
-" autocmd BufEnter * lcd %:p:h
-
 filetype plugin indent on
 
 set undodir=~/.config/nvim/undodir
@@ -79,11 +77,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mattn/emmet-vim'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
 Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/Alok/notational-fzf-vim'
+Plug 'mrtazz/simplenote.vim'
 
 " Colors
-Plug 'mattn/emmet-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'romainl/Apprentice'
@@ -103,7 +104,11 @@ let g:jsx_ext_required = 0
 
 let g:syntastic_check_on_open=1
 
-map <C-E> :NERDTreeToggle<CR>
+ "For mucomplete
+set completeopt+=menuone
+
+
+nnoremap <F3> :NERDTreeToggle<cr>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$']
@@ -127,6 +132,7 @@ set cul
 set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
 set spelllang=pt
+let mapleader=" "
 
 let mapleader="\<space>"
 " let g:mucomplete#enable_auto_at_startup = 1
@@ -136,17 +142,17 @@ let mapleader="\<space>"
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
+augroup ENDlet mapleader = ","
 
 nnoremap <Leader>; :Files<cr>
 nnoremap <S-F3> :Ag <c-r><c-w>
-nnoremap <F3> :NERDTreeToggle<cr>
-au BufRead,BufNewFile *.xml vnoremap <Leader>c <esc>a --><esc>'<i<!-- <esc>'>$
-au BufRead,BufNewFile *.js vnoremap <Leader>c <esc>a */}<esc>'<i{/* <esc>'>$
+
+let g:SimplenoteUsername = $SIMPLENOTE_USER
+let g:SimplenotePassword = $SIMPLENOTE_PWD
 
 
 "" JavaScript
-autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab foldmethod=syntax
+au BufRead,BufNewFile *.js setlocal ts=4 sts=4 sw=4 noexpandtab foldmethod=syntax
 
 "" vim-airline
 let g:airline_theme = 'bubblegum'
