@@ -103,7 +103,6 @@ let g:user_emmet_leader_key             =','
 
 let g:jsx_ext_required = 0
 
-let g:syntastic_check_on_open=1
 
  "For mucomplete
 set completeopt+=menuone
@@ -138,6 +137,7 @@ let mapleader=" "
 let mapleader="\<space>"
 " let g:mucomplete#enable_auto_at_startup = 1
 " let g:mucomplete#completion_delay = 5
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
@@ -153,15 +153,18 @@ let g:SimplenotePassword = $SIMPLENOTE_PWD
 
 
 "" JavaScript
-au BufRead,BufNewFile *.js setlocal ts=4 sts=4 sw=4 noexpandtab foldmethod=syntax
+au BufRead,BufNewFile *.js setlocal ts=4 sts=4 sw=4 expandtab foldmethod=syntax
 
 "" vim-airline
 let g:airline_theme = 'bubblegum'
 " let g:airline_theme = 'light'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+
+let g:syntastic_javascript_checkers = []
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
