@@ -1,4 +1,3 @@
-set spell spelllang=en_us
 set undofile
 set encoding=utf-8
 
@@ -40,6 +39,7 @@ set undodir=~/.config/nvim/undodir
 
 call plug#begin()
 
+Plug 'ap/vim-css-color'
 Plug 'vim-scripts/Vimball'
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
@@ -53,7 +53,9 @@ Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/nginx.vim'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+Plug 'junegunn/gv.vim'
 Plug 'Shougo/neocomplcache.vim'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
@@ -84,13 +86,27 @@ Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mrtazz/simplenote.vim'
 Plug 'qpkorr/vim-bufkill'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'johngrib/vim-game-code-break'
 
 " Colors
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'romainl/Apprentice'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
+
+" Snippets
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"  let g:UltiSnipsExpandTrigger="<tab>"
+"  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"  
+"  " If you want :UltiSnipsEdit to split your window.
+"  let g:UltiSnipsEditSplit="vertical"
+
 
 " Notational
 let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
@@ -145,6 +161,8 @@ augroup vimrc-remember-cursor-position
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup ENDlet mapleader = ","
 
+autocmd BufRead *.tsv setlocal ts=20 sts=20 sw=20 noexpandtab
+
 nnoremap <Leader>; :Files<cr>
 nnoremap <S-F3> :Ag <c-r><c-w>
 
@@ -163,7 +181,7 @@ let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 
-let g:syntastic_javascript_checkers = []
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 if !exists('g:airline_symbols')
