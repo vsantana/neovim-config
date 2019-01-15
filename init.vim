@@ -1,6 +1,75 @@
 set undofile
 set encoding=utf-8
 
+
+call plug#begin()
+
+Plug 'ap/vim-css-color'
+Plug 'vim-scripts/Vimball'
+Plug 'godlygeek/tabular'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/goyo.vim'
+" Plug 'rust-lang/rust.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'groenewege/vim-less'
+Plug 'tpope/vim-markdown'
+Plug 'vim-scripts/nginx.vim'
+"  Plug 'Valloric/YouCompleteMe'
+Plug 'michaeljsmith/vim-indent-object'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+Plug 'junegunn/gv.vim'
+" Plug 'ervandew/supertab'
+Plug 'Shougo/neocomplcache.vim'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'Raimondi/delimitMate'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'mhinz/vim-startify'
+Plug 'vim-scripts/nginx.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim'
+
+Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+Plug 'Yggdroot/indentLine'
+" Plug 'lifepillar/vim-mucomplete'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mattn/emmet-vim'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
+Plug 'sheerun/vim-polyglot'
+Plug 'https://github.com/Alok/notational-fzf-vim'
+" Plug 'mrtazz/simplenote.vim'
+Plug 'qpkorr/vim-bufkill'
+" Plug 'SirVer/ultisnips'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'fedorenchik/VimCalc3'
+Plug 'chrisbra/matchit'
+
+" Plug 'tpope/vim-vinegar' " Navegar pelos arquivos
+Plug 'wincent/terminus' " Integracao com terminal
+" Colors
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
+Plug 'romainl/Apprentice'
+Plug 'joshdick/onedark.vim'
+
+call plug#end()
+
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
     set clipboard=unnamed,unnamedplus
@@ -31,82 +100,23 @@ vnoremap > >gv
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
-colorscheme solarized
+
+
+let g:ale_completion_enabled = 0
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 filetype plugin indent on
-
 set undodir=~/.config/nvim/undodir
-
-call plug#begin()
-
-Plug 'ap/vim-css-color'
-Plug 'vim-scripts/Vimball'
-Plug 'godlygeek/tabular'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'groenewege/vim-less'
-Plug 'tpope/vim-markdown'
-Plug 'vim-scripts/nginx.vim'
-" Plug 'Valloric/YouCompleteMe'
-Plug 'michaeljsmith/vim-indent-object'
-" Plug 'vim-syntastic/syntastic'
-Plug 'w0rp/ale'
-Plug 'junegunn/gv.vim'
-" Plug 'ervandew/supertab'
-Plug 'Shougo/neocomplcache.vim'
-Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'Raimondi/delimitMate'
-Plug 'tmhedberg/SimpylFold'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'mhinz/vim-startify'
-Plug 'vim-scripts/nginx.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim'
-
-Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
-Plug 'Yggdroot/indentLine'
-Plug 'lifepillar/vim-mucomplete'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mattn/emmet-vim'
-Plug 'inkarkat/vim-ingo-library'
-Plug 'inkarkat/vim-mark'
-Plug 'sheerun/vim-polyglot'
-Plug 'https://github.com/Alok/notational-fzf-vim'
-Plug 'mrtazz/simplenote.vim'
-Plug 'qpkorr/vim-bufkill'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'johngrib/vim-game-code-break'
-
-" Colors
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'morhetz/gruvbox'
-Plug 'romainl/Apprentice'
-Plug 'joshdick/onedark.vim'
-
-call plug#end()
 
 " Snippets
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"  let g:UltiSnipsExpandTrigger="<tab>"
-"  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"  
-"  " If you want :UltiSnipsEdit to split your window.
-"  let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 " Notational
@@ -120,12 +130,15 @@ let g:user_emmet_leader_key             =','
 
 let g:jsx_ext_required = 0
 
+colorscheme papercolor
 
  "For mucomplete
 set completeopt+=menuone
 
 
 nnoremap <F3> :NERDTreeToggle<cr>
+nnoremap <F15> :Ag 
+
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$']
@@ -164,19 +177,26 @@ augroup ENDlet mapleader = ","
 
 autocmd BufRead *.tsv setlocal ts=20 sts=20 sw=20 noexpandtab
 
+" MAPS
 nnoremap <Leader>; :Files<cr>
-nnoremap <S-F3> :Ag <c-r><c-w>
+nmap <c-f> :Ag <c-r><c-w>
 
 let g:SimplenoteUsername = $SIMPLENOTE_USER
 let g:SimplenotePassword = $SIMPLENOTE_PWD
 
 
 "" JavaScript
-au BufRead,BufNewFile *.js setlocal ts=4 sts=4 sw=4 expandtab foldmethod=syntax
+au BufRead,BufNewFile *.js setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\}
 
 "" vim-airline
 let g:airline_theme = 'bubblegum'
 " let g:airline_theme = 'light'
+let g:airline_theme = 'papercolor'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#branch#enabled = 1
