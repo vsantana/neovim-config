@@ -4,40 +4,40 @@ set encoding=utf-8
 
 call plug#begin()
 
+Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
 Plug 'vim-scripts/Vimball'
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/goyo.vim'
+Plug 'itchyny/lightline.vim'  "A light and configurable statusline/tabline plugin for Vim
+Plug 'junegunn/goyo.vim' " Distraction-free writing in Vim.
 " Plug 'rust-lang/rust.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'groenewege/vim-less'
 Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/nginx.vim'
 "  Plug 'Valloric/YouCompleteMe'
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object' " Usar no modo visual aI selectionar objeto
 " Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 Plug 'junegunn/gv.vim'
 " Plug 'ervandew/supertab'
-Plug 'Shougo/neocomplcache.vim'
 Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' " Mostra que linhas foram mudadas no git
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'Raimondi/delimitMate'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'Raimondi/delimitMate' "Fechar {} e []
+Plug 'tmhedberg/SimpylFold' "Fold para python
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'mhinz/vim-startify'
-Plug 'vim-scripts/nginx.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim'
+Plug 'Quramy/tsuquyomi' "Completation para TypeScript
+Plug 'Shougo/vimproc.vim' "a great asynchronous execution library for Vim
+Plug 'tmsvg/pear-tree' " Completar pares []
 
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine' "mostrar guias de identacao
 " Plug 'lifepillar/vim-mucomplete'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf'
@@ -50,7 +50,7 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/Alok/notational-fzf-vim'
-" Plug 'mrtazz/simplenote.vim'
+Plug 'mrtazz/simplenote.vim'
 Plug 'qpkorr/vim-bufkill'
 " Plug 'SirVer/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -103,8 +103,8 @@ vnoremap . :normal .<CR>
 
 
 let g:ale_completion_enabled = 0
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '~'
 
 filetype plugin indent on
 set undodir=~/.config/nvim/undodir
@@ -193,6 +193,12 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \}
 
+" Formato do cursor
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+
 "" vim-airline
 let g:airline_theme = 'bubblegum'
 " let g:airline_theme = 'light'
@@ -201,6 +207,12 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+
+
+" Dev-icons
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
