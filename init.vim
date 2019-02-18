@@ -17,7 +17,7 @@ Plug 'junegunn/goyo.vim' " Distraction-free writing in Vim.
 Plug 'groenewege/vim-less'
 Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/nginx.vim'
-"  Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'michaeljsmith/vim-indent-object' " Usar no modo visual aI selectionar objeto
 " Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
@@ -33,7 +33,9 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'mhinz/vim-startify'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi' "Completation para TypeScript
-Plug 'Shougo/vimproc.vim' "a great asynchronous execution library for Vim
+Plug 'HerringtonDarkholme/yats.vim' " syntax para TS
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'Shougo/vimproc.vim', {'do': 'make'} "a great asynchronous execution library for Vim
 Plug 'tmsvg/pear-tree' " Completar pares []
 
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
@@ -60,6 +62,8 @@ Plug 'honza/vim-snippets'
 Plug 'fedorenchik/VimCalc3'
 Plug 'chrisbra/matchit'
 
+Plug 'wellle/tmux-complete.vim'
+
 " Plug 'tpope/vim-vinegar' " Navegar pelos arquivos
 Plug 'wincent/terminus' " Integracao com terminal
 " Colors
@@ -80,7 +84,7 @@ endif
 
 set ignorecase
 set number
-set conceallevel=1
+set conceallevel=2
 set termguicolors
 set background=dark
 
@@ -101,7 +105,6 @@ vnoremap > >gv
 vnoremap . :normal .<CR>
 
 
-
 let g:ale_completion_enabled = 0
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '~'
@@ -110,30 +113,24 @@ filetype plugin indent on
 set undodir=~/.config/nvim/undodir
 
 " Snippets
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 
 " Notational
 let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
+
 let g:user_emmet_leader_key             =','
 " let g:javascript_plugin_jsdoc           = 1
+
 " let g:javascript_conceal_function       = "ƒ"
 " let g:javascript_conceal_null           = "ø"
-" let g:javascript_conceal_arrow_function = "⇒"
-" let g:javascript_conceal_return         = "⇚"
+" let g:javascript_conceal_arrow_function = "➯"
+" let g:javascript_conceal_return         = "⬅︎"
 
 let g:jsx_ext_required = 0
 
 colorscheme papercolor
 
  "For mucomplete
-set completeopt+=menuone
+" set completeopt+=menuone
 
 
 nnoremap <F3> :NERDTreeToggle<cr>
