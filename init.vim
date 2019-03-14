@@ -4,6 +4,7 @@ set encoding=utf-8
 
 call plug#begin()
 
+Plug 'AndrewRadev/multichange.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
 Plug 'vim-scripts/Vimball'
@@ -37,10 +38,11 @@ Plug 'HerringtonDarkholme/yats.vim' " syntax para TS
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/vimproc.vim', {'do': 'make'} "a great asynchronous execution library for Vim
 Plug 'tmsvg/pear-tree' " Completar pares []
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 Plug 'Yggdroot/indentLine' "mostrar guias de identacao
-" Plug 'lifepillar/vim-mucomplete'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -84,6 +86,7 @@ endif
 
 set ignorecase
 set number
+set relativenumber
 set conceallevel=2
 set termguicolors
 set background=dark
@@ -104,6 +107,9 @@ vnoremap > >gv
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
+
+let g:multichange_mapping        = '<s-c-n'
+let g:multichange_motion_mapping = '<s-c-n'
 
 let g:ale_completion_enabled = 0
 let g:ale_sign_error = '>>'
