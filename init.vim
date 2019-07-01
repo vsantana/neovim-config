@@ -3,6 +3,13 @@ set encoding=utf-8
 
 
 call plug#begin()
+Plug 'justinmk/vim-sneak'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
 
 Plug 'AndrewRadev/multichange.vim'
 Plug 'ryanoasis/vim-devicons'
@@ -22,7 +29,7 @@ Plug 'vim-scripts/nginx.vim'
 Plug 'michaeljsmith/vim-indent-object' " Usar no modo visual aI selectionar objeto
 " Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim' " Ver historio com :GV ou :GV! so para o arquivo atual
 " Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter' " Mostra que linhas foram mudadas no git
@@ -37,7 +44,7 @@ Plug 'Quramy/tsuquyomi' "Completation para TypeScript
 Plug 'HerringtonDarkholme/yats.vim' " syntax para TS
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/vimproc.vim', {'do': 'make'} "a great asynchronous execution library for Vim
-Plug 'tmsvg/pear-tree' " Completar pares []
+" Plug 'tmsvg/pear-tree' " Completar pares []
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
@@ -56,10 +63,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mrtazz/simplenote.vim'
 Plug 'qpkorr/vim-bufkill'
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+" Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'fedorenchik/VimCalc3'
 Plug 'chrisbra/matchit'
@@ -74,7 +81,22 @@ Plug 'morhetz/gruvbox'
 Plug 'romainl/Apprentice'
 Plug 'joshdick/onedark.vim'
 
+"Flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+
 call plug#end()
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+
+" neosnippet
+let g:neosnippet#enable_completed_snippet = 1
+
+"Sneak
+let g:sneak#label = 1
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
 
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
@@ -107,7 +129,6 @@ vnoremap > >gv
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
-
 let g:multichange_mapping        = '<s-c-n'
 let g:multichange_motion_mapping = '<s-c-n'
 
@@ -118,12 +139,18 @@ let g:ale_sign_warning = '~'
 filetype plugin indent on
 set undodir=~/.config/nvim/undodir
 
+"Flutter
+let g:flutter_command = "/Users/vsantana/repos/flutter/bin/flutter"
+
 " Snippets
+let g:UltiSnipsExpandTrigger = '<F5>'  " Use something different from <tab>
+let g:mucomplete#chains = { 'default': ['ulti', 'tags', 'c-n', 'omni', 'file']}
+" let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
 
 " Notational
 let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
 
-let g:user_emmet_leader_key             =','
+" let g:user_emmet_leader_key             =','
 " let g:javascript_plugin_jsdoc           = 1
 
 " let g:javascript_conceal_function       = "ƒ"
@@ -138,6 +165,7 @@ colorscheme papercolor
  "For mucomplete
 " set completeopt+=menuone
 
+let g:pear_tree_repeatable_expand=0
 
 nnoremap <F3> :NERDTreeToggle<cr>
 nnoremap <F15> :Ag 
@@ -161,6 +189,9 @@ set mousehide               " Hide the mouse cursor while typing
 
 " vsantana
 "
+" Ajuda para compor email e textos
+autocmd BufRead *.txt setlocal complete+=k dictionary+=/Users/vsantana/palavras.txt iskeyword+=-
+
 set cul
 set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
@@ -191,6 +222,9 @@ let g:SimplenotePassword = $SIMPLENOTE_PWD
 "" JavaScript
 au BufRead,BufNewFile *.js setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
 
+let g:ale_linters = {
+\  'javascript': ['flow', 'eslint'],
+\}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
@@ -240,3 +274,6 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+"My Macros
+let @l='0f= lveeeecrequire$hxj'
