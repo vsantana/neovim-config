@@ -5,7 +5,7 @@ set encoding=utf-8
 call plug#begin()
 Plug 'justinmk/vim-sneak'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wokalski/autocomplete-flow'
+" Plug 'wokalski/autocomplete-flow'
 " For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -48,7 +48,7 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'} "a great asynchronous execution librar
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
-Plug 'Yggdroot/indentLine' "mostrar guias de identacao
+" Plug 'Yggdroot/indentLine' "mostrar guias de identacao
 Plug 'lifepillar/vim-mucomplete'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf'
@@ -80,6 +80,9 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'romainl/Apprentice'
 Plug 'joshdick/onedark.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'rakr/vim-one'
+Plug 'whatyouhide/vim-gotham'
 
 "Flutter
 Plug 'dart-lang/dart-vim-plugin'
@@ -89,6 +92,7 @@ call plug#end()
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 500
 
 " neosnippet
 let g:neosnippet#enable_completed_snippet = 1
@@ -150,7 +154,7 @@ let g:mucomplete#chains = { 'default': ['ulti', 'tags', 'c-n', 'omni', 'file']}
 " Notational
 let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
 
-" let g:user_emmet_leader_key             =','
+let g:user_emmet_leader_key             =','
 " let g:javascript_plugin_jsdoc           = 1
 
 " let g:javascript_conceal_function       = "ƒ"
@@ -160,7 +164,7 @@ let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
 
 let g:jsx_ext_required = 0
 
-colorscheme papercolor
+colorscheme one
 
  "For mucomplete
 " set completeopt+=menuone
@@ -212,7 +216,7 @@ augroup ENDlet mapleader = ","
 autocmd BufRead *.tsv setlocal ts=20 sts=20 sw=20 noexpandtab
 
 " MAPS
-nnoremap <Leader>; :Files<cr>
+nnoremap <Leader>; :GFiles<cr>
 nmap <c-f> :Ag <c-r><c-w>
 
 let g:SimplenoteUsername = $SIMPLENOTE_USER
@@ -223,12 +227,14 @@ let g:SimplenotePassword = $SIMPLENOTE_PWD
 au BufRead,BufNewFile *.js setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
 
 let g:ale_linters = {
-\  'javascript': ['flow', 'eslint'],
+\  'javascript': ['eslint'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
 \}
+
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 
 " Formato do cursor
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -277,3 +283,10 @@ endif
 
 "My Macros
 let @l='0f= lveeeecrequire$hxj'
+
+" My abbrev
+iabbrev imrpot import
+
+" My commands
+command Todo SimplenoteOpen bd8c7c6cc01643dab149ff3fea25ed2a
+
