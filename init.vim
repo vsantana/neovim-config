@@ -3,7 +3,10 @@ set encoding=utf-8
 
 
 call plug#begin()
-Plug 'justinmk/vim-sneak'
+Plug 'baabelfish/nvim-nim'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'sotte/presenting.vim' " Slides
+Plug 'justinmk/vim-sneak' "Melhora a funcionalidade do f 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'wokalski/autocomplete-flow'
 " For func argument completion
@@ -18,8 +21,9 @@ Plug 'vim-scripts/Vimball'
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'itchyny/lightline.vim'  "A light and configurable statusline/tabline plugin for Vim
-Plug 'junegunn/goyo.vim' " Distraction-free writing in Vim.
+Plug 'tpope/vim-rhubarb'
+" Plug 'itchyny/lightline.vim'  "A light and configurable statusline/tabline plugin for Vim
+" Plug 'junegunn/goyo.vim' " Distraction-free writing in Vim.
 " Plug 'rust-lang/rust.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'groenewege/vim-less'
@@ -34,11 +38,11 @@ Plug 'junegunn/gv.vim' " Ver historio com :GV ou :GV! so para o arquivo atual
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter' " Mostra que linhas foram mudadas no git
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'Raimondi/delimitMate' "Fechar {} e []
 Plug 'tmhedberg/SimpylFold' "Fold para python
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi' "Completation para TypeScript
 Plug 'HerringtonDarkholme/yats.vim' " syntax para TS
@@ -47,10 +51,10 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'} "a great asynchronous execution librar
 " Plug 'tmsvg/pear-tree' " Completar pares []
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+" Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 " Plug 'Yggdroot/indentLine' "mostrar guias de identacao
 Plug 'lifepillar/vim-mucomplete'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
@@ -59,7 +63,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mattn/emmet-vim'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' " Pacote de syntax
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mrtazz/simplenote.vim'
 Plug 'qpkorr/vim-bufkill'
@@ -71,7 +75,7 @@ Plug 'honza/vim-snippets'
 Plug 'fedorenchik/VimCalc3'
 Plug 'chrisbra/matchit'
 
-Plug 'wellle/tmux-complete.vim'
+" Plug 'wellle/tmux-complete.vim'
 
 " Plug 'tpope/vim-vinegar' " Navegar pelos arquivos
 Plug 'wincent/terminus' " Integracao com terminal
@@ -93,15 +97,16 @@ call plug#end()
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 500
+call deoplete#custom#option({
+\ 'auto_complete_delay': 200,
+\ 'smart_case': v:true,
+\ })
 
 " neosnippet
 let g:neosnippet#enable_completed_snippet = 1
 
 "Sneak
 let g:sneak#label = 1
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
-
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
     set clipboard=unnamed,unnamedplus
@@ -124,6 +129,7 @@ set shiftwidth=4
 set tabstop=4
 
 set history=1000
+set hidden
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -147,9 +153,10 @@ set undodir=~/.config/nvim/undodir
 let g:flutter_command = "/Users/vsantana/repos/flutter/bin/flutter"
 
 " Snippets
-let g:UltiSnipsExpandTrigger = '<F5>'  " Use something different from <tab>
+let g:UltiSnipsExpandTrigger = '<c-s>'  " Use something different from <tab>
 let g:mucomplete#chains = { 'default': ['ulti', 'tags', 'c-n', 'omni', 'file']}
 " let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 " Notational
 let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
@@ -200,7 +207,7 @@ set cul
 set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
 set spelllang=pt
-let mapleader=" "
+" let mapleader=" "
 
 let mapleader="\<space>"
 " let g:mucomplete#enable_auto_at_startup = 1
@@ -211,13 +218,17 @@ let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup ENDlet mapleader = ","
+augroup END
 
 autocmd BufRead *.tsv setlocal ts=20 sts=20 sw=20 noexpandtab
 
 " MAPS
 nnoremap <Leader>; :GFiles<cr>
 nmap <c-f> :Ag <c-r><c-w>
+nmap <Leader>f <Plug>Sneak_s
+nmap <Leader>F <Plug>Sneak_S
+nnoremap <c-n> :NV!<cr>
+
 
 let g:SimplenoteUsername = $SIMPLENOTE_USER
 let g:SimplenotePassword = $SIMPLENOTE_PWD
@@ -289,4 +300,5 @@ iabbrev imrpot import
 
 " My commands
 command Todo SimplenoteOpen bd8c7c6cc01643dab149ff3fea25ed2a
-
+command IXio :!curl -F 'f:1=@%' ix.io
+command Shake :silent exec '!adb shell input keyevent 82'
