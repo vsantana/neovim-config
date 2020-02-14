@@ -3,6 +3,9 @@ set encoding=utf-8
 
 
 call plug#begin()
+Plug 'jamessan/vim-gnupg'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tell-k/vim-autopep8'
 Plug 'baabelfish/nvim-nim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'sotte/presenting.vim' " Slides
@@ -80,6 +83,7 @@ Plug 'chrisbra/matchit'
 " Plug 'tpope/vim-vinegar' " Navegar pelos arquivos
 Plug 'wincent/terminus' " Integracao com terminal
 " Colors
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'romainl/Apprentice'
@@ -92,7 +96,20 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 call plug#end()
+
+" Lang Cliente
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -154,7 +171,8 @@ let g:flutter_command = "/Users/vsantana/repos/flutter/bin/flutter"
 
 " Snippets
 let g:UltiSnipsExpandTrigger = '<c-s>'  " Use something different from <tab>
-let g:mucomplete#chains = { 'default': ['ulti', 'tags', 'c-n', 'omni', 'file']}
+let g:mucomplete#chains = { 'default': ['omni', 'tags', 'c-n', 'ulti', 'file']}
+" let g:mucomplete#chains = { 'default': ['ulti', 'tags', 'c-n', 'omni', 'file']}
 " let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
@@ -206,6 +224,7 @@ autocmd BufRead *.txt setlocal complete+=k dictionary+=/Users/vsantana/palavras.
 set cul
 set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
+set list lcs+=eol:⏎,space:· "Exibir indentação com tabs
 set spelllang=pt
 " let mapleader=" "
 
@@ -224,6 +243,7 @@ autocmd BufRead *.tsv setlocal ts=20 sts=20 sw=20 noexpandtab
 
 " MAPS
 nnoremap <Leader>; :GFiles<cr>
+nnoremap <Leader>: :Files<cr>
 nmap <c-f> :Ag <c-r><c-w>
 nmap <Leader>f <Plug>Sneak_s
 nmap <Leader>F <Plug>Sneak_S
@@ -239,10 +259,12 @@ au BufRead,BufNewFile *.js setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
 
 let g:ale_linters = {
 \  'javascript': ['eslint'],
+\  'python': ['pylint'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
+\   'python': ['autopep8'],
 \}
 
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
