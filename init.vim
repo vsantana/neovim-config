@@ -102,6 +102,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 call plug#end()
 
+let g:python2_host_prog = '/usr/local/bin/python'  
+let g:python3_host_prog = '/usr/local/bin/python3'
 " Lang Cliente
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
@@ -177,7 +179,7 @@ let g:mucomplete#chains = { 'default': ['omni', 'tags', 'c-n', 'ulti', 'file']}
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 " Notational
-let g:nv_search_paths = ['~/Dropbox/documentos/markdow']
+let g:nv_search_paths = ['~/markdown']
 
 let g:user_emmet_leader_key             =','
 " let g:javascript_plugin_jsdoc           = 1
@@ -255,7 +257,7 @@ let g:SimplenotePassword = $SIMPLENOTE_PWD
 
 
 "" JavaScript
-au BufRead,BufNewFile *.js setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
+au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
 
 let g:ale_linters = {
 \  'javascript': ['eslint'],
