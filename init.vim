@@ -10,11 +10,12 @@ Plug 'baabelfish/nvim-nim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'sotte/presenting.vim' " Slides
 Plug 'justinmk/vim-sneak' "Melhora a funcionalidade do f 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+":x:x#Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'wokalski/autocomplete-flow'
 " For func argument completion
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
+
 
 
 Plug 'AndrewRadev/multichange.vim'
@@ -70,7 +71,7 @@ Plug 'sheerun/vim-polyglot' " Pacote de syntax
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mrtazz/simplenote.vim'
 Plug 'qpkorr/vim-bufkill'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
@@ -114,12 +115,12 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 500
-call deoplete#custom#option({
-\ 'auto_complete_delay': 200,
-\ 'smart_case': v:true,
-\ })
+"let g:deoplete#enable_at_startup = 1
+"let g:deoplete#auto_complete_delay = 500
+"call deoplete#custom#option({
+"\ 'auto_complete_delay': 200,
+"\ 'smart_case': v:true,
+"\ })
 
 " neosnippet
 let g:neosnippet#enable_completed_snippet = 1
@@ -220,6 +221,9 @@ set mousehide               " Hide the mouse cursor while typing
 
 " vsantana
 "
+"Mostar limite do texto
+set colorcolumn=80,100
+
 " Ajuda para compor email e textos
 autocmd BufRead *.txt setlocal complete+=k dictionary+=/Users/vsantana/palavras.txt iskeyword+=-
 
@@ -326,3 +330,4 @@ iabbrev imrpot import
 command Todo SimplenoteOpen bd8c7c6cc01643dab149ff3fea25ed2a
 command IXio :!curl -F 'f:1=@%' ix.io
 command Shake :silent exec '!adb shell input keyevent 82'
+command! -nargs=* IOSDeepLink :silent exec '!xcrun simctl openurl booted <args>'
