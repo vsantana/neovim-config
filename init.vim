@@ -230,7 +230,8 @@ autocmd BufRead *.txt setlocal complete+=k dictionary+=/Users/vsantana/palavras.
 set cul
 set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
-set list lcs+=eol:⏎,space:· "Exibir indentação com tabs
+set list lcs+=eol:⏎
+set list lcs=space:· "Exibir indentação com tabs
 set spelllang=pt
 " let mapleader=" "
 
