@@ -48,7 +48,7 @@ Plug 'tmhedberg/SimpylFold' "Fold para python
 Plug 'Vimjas/vim-python-pep8-indent'
 " Plug 'mhinz/vim-startify'
 Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi' "Completation para TypeScript
+" Plug 'Quramy/tsuquyomi' "Completation para TypeScript
 Plug 'HerringtonDarkholme/yats.vim' " syntax para TS
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/vimproc.vim', {'do': 'make'} "a great asynchronous execution library for Vim
@@ -92,6 +92,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'rakr/vim-one'
 Plug 'whatyouhide/vim-gotham'
+Plug 'ParamagicDev/vim-medic_chalk'
 
 "Flutter
 Plug 'dart-lang/dart-vim-plugin'
@@ -192,7 +193,7 @@ let g:user_emmet_leader_key             =','
 
 let g:jsx_ext_required = 0
 
-colorscheme one
+colorscheme medic_chalk
 
  "For mucomplete
 " set completeopt+=menuone
@@ -230,8 +231,8 @@ autocmd BufRead *.txt setlocal complete+=k dictionary+=/Users/vsantana/palavras.
 set cul
 set inccommand=split "preview de comandos
 set list lcs=tab:\|\ "Exibir indentação com tabs
-set list lcs+=eol:⏎
-set list lcs=space:· "Exibir indentação com tabs
+set list lcs+=eol:⏎ 
+" set list lcs=space:· "Exibir indentação com tabs
 set spelllang=pt
 " let mapleader=" "
 
