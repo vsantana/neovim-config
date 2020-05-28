@@ -1,16 +1,18 @@
 set undofile
 set encoding=utf-8
 
+let g:python2_host_prog = '/usr/local/bin/python'  
+let g:python3_host_prog = '/usr/bin/python3'
 
 call plug#begin()
 Plug 'jamessan/vim-gnupg'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tell-k/vim-autopep8'
 Plug 'baabelfish/nvim-nim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'sotte/presenting.vim' " Slides
 Plug 'justinmk/vim-sneak' "Melhora a funcionalidade do f 
-":x:x#Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'wokalski/autocomplete-flow'
 " For func argument completion
 "Plug 'Shougo/neosnippet'
@@ -93,6 +95,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'rakr/vim-one'
 Plug 'whatyouhide/vim-gotham'
 Plug 'ParamagicDev/vim-medic_chalk'
+Plug 'chriskempson/base16-vim'
+Plug 'tomasr/molokai'
 
 "Flutter
 Plug 'dart-lang/dart-vim-plugin'
@@ -104,8 +108,6 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 call plug#end()
 
-let g:python2_host_prog = '/usr/local/bin/python'  
-let g:python3_host_prog = '/usr/local/bin/python3'
 " Lang Cliente
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
@@ -116,6 +118,10 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 " deoplete
+" Use ALE and also some plugin 'foobar' as completion sources for all code.
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
 "let g:deoplete#enable_at_startup = 1
 "let g:deoplete#auto_complete_delay = 500
 "call deoplete#custom#option({
@@ -141,7 +147,7 @@ set number
 set relativenumber
 set conceallevel=2
 set termguicolors
-set background=dark
+set background=light
 
 set expandtab
 set autoindent
@@ -163,10 +169,11 @@ vnoremap . :normal .<CR>
 let g:multichange_mapping        = '<s-c-n'
 let g:multichange_motion_mapping = '<s-c-n'
 
-let g:ale_completion_enabled = 0
+let g:ale_completion_enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '~'
 
+let g:sneak#label = 1
 filetype plugin indent on
 set undodir=~/.config/nvim/undodir
 
@@ -193,7 +200,7 @@ let g:user_emmet_leader_key             =','
 
 let g:jsx_ext_required = 0
 
-colorscheme medic_chalk
+colorscheme PaperColor
 
  "For mucomplete
 " set completeopt+=menuone
@@ -252,10 +259,11 @@ autocmd BufRead *.tsv setlocal ts=20 sts=20 sw=20 noexpandtab
 " MAPS
 nnoremap <Leader>; :GFiles<cr>
 nnoremap <Leader>: :Files<cr>
-nmap <c-f> :Ag <c-r><c-w>
+nmap <c-f> :Rg <c-r><c-w>
 nmap <Leader>f <Plug>Sneak_s
 nmap <Leader>F <Plug>Sneak_S
 nnoremap <c-n> :NV!<cr>
+nmap <F2> :ALENext<cr>
 
 
 let g:SimplenoteUsername = $SIMPLENOTE_USER
@@ -263,7 +271,7 @@ let g:SimplenotePassword = $SIMPLENOTE_PWD
 
 
 "" JavaScript
-au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
+au FileType javascript,typescript,typescriptreact setlocal ts=2 sts=2 sw=2 expandtab foldmethod=syntax
 
 let g:ale_linters = {
 \  'javascript': ['eslint'],
@@ -333,3 +341,6 @@ command Todo SimplenoteOpen bd8c7c6cc01643dab149ff3fea25ed2a
 command IXio :!curl -F 'f:1=@%' ix.io
 command Shake :silent exec '!adb shell input keyevent 82'
 command! -nargs=* IOSDeepLink :silent exec '!xcrun simctl openurl booted <args>'
+
+set exrc
+set secure
